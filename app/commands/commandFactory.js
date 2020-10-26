@@ -1,6 +1,6 @@
 const { COMMAND_TYPE } = require('./constants')
 const { PlaceCommand, MoveCommand, RotateLeftCommand, RotateRightCommand, ReportCommand } = require('./commands')
-const { DIRECTIONS } = require('../constants')
+const { DIRECTIONS } = require('../robot/constants')
 
 class CommandFactory {
     constructor(robot) {
@@ -20,7 +20,7 @@ class CommandFactory {
                     command = () => {}
                     break
                 }
-                command = PlaceCommand(this._robot, null, { x, y }, dir) 
+                command = PlaceCommand(this._robot, null, { x: parseInt(x, 10), y: parseInt(y, 10) }, dir) 
                 break 
             case COMMAND_TYPE.MOVE: 
                 command = MoveCommand(this._robot, null)
