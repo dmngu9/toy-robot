@@ -1,17 +1,14 @@
 const robot = require("../robot")
 
-function PlaceCommand(robot, table, coordinate, direction) {
+function PlaceCommand(robot, position) {
     return () => {
-        robot.coordinate = coordinate
-        robot.direction = direction
-        // TODO: table set item
+        robot.position = position
     }
 }
 
-function MoveCommand(robot, table) {
+function MoveCommand(robot) {
     return () => {
         robot.forward()
-        // TODO: table set item
     }
 }
 

@@ -1,13 +1,20 @@
 const { DIRECTION, DIRECTION_CLOCKWISE } = require('./constants')
 
 class Robot {
-    constructor(coordinate, direction) {
-        this._coordinate = coordinate
-        this._direction = direction
+    constructor(table) {
+        this._coordinate = undefined
+        this._direction = undefined
+        this._table = table
     }
 
     isPlaced = () => {
         return !!this._coordinate && !!this._direction
+    }
+
+    isOnTable = (coordinate) => {
+        const { x, y } = coordinate
+        const { height, width } = this._table.dimension
+        return x < width && y < height
     }
 
     forward = () => {
@@ -15,16 +22,20 @@ class Robot {
             return
         }
         const moveMap = {
-            [`${DIRECTION.NORTH}`]: { X: 0, Y: 1 },
-            [`${DIRECTION.EAST}`]: { X: 1, Y: 0 },
-            [`${DIRECTION.SOUTH}`]: { X: 0, Y: -1 },
-            [`${DIRECTION.WEST}`]: { X: -1, Y: 0 },
+            [`${DIRECTION.NORTH}`]: { x: 0, y: 1 },
+            [`${DIRECTION.EAST}`]: { x: 1, y: 0 },
+            [`${DIRECTION.SOUTH}`]: { x: 0, y: -1 },
+            [`${DIRECTION.WEST}`]: { x: -1, y: 0 },
         }
         const { x: currentX, y: currentY } = this._coordinate
-        this._coordinate = {
-            x: moveMap[this._direction] + currentX,
-            y: moveMap[this._direction] + currentY
+        const newCoordinate = {
+            x: moveMap[this._direction].x + currentX,
+            y: moveMap[this._direction].y + currentY
         }
+        if (!this.isOnTable(newCoordinate)) {
+            return
+        }
+        this._coordinate = newCoordinate
     }
 
     rotateLeft = () => {
@@ -49,14 +60,14 @@ class Robot {
         if (!this.isPlaced()) {
             return
         }
-        return `${this._coordinate.x},${this._coordinate.y},${this._direction}`
+        const response = `${this._coordinate.x},${this._coordinate.y},${this._direction}`
+        console.log(response)
+        return response
     }
 
-    set coordinate(coordinate) {
+    set position(position) {
+        const { coordinate, direction } = position
         this._coordinate = coordinate
-    }
-
-    set direction(direction) {
         this._direction = direction
     }
 }

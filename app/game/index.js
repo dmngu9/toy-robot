@@ -8,3 +8,5 @@ class Game {
         return command()
     }
 }
+
+module.exports = { Game }

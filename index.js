@@ -10,8 +10,8 @@ const rl = readline.createInterface({
     terminal: false
 });
 
-const robot = new Robot()
 const table = new Table(5, 5)
+const robot = new Robot(table)
 const commandFactory = new CommandFactory(robot)
 const game = new Game(commandFactory)
 

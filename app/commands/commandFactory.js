@@ -1,6 +1,6 @@
 const { COMMAND_TYPE } = require('./constants')
 const { PlaceCommand, MoveCommand, RotateLeftCommand, RotateRightCommand, ReportCommand } = require('./commands')
-const { DIRECTIONS } = require('../robot/constants')
+const { DIRECTION } = require('../robot/constants')
 
 class CommandFactory {
     constructor(robot) {
@@ -14,16 +14,16 @@ class CommandFactory {
         switch(commandType) {
             case COMMAND_TYPE.PLACE: 
                 const [x, y, dir] = commandVal[0].split(',')
-                const validDirections = new Set(Object.values(DIRECTIONS))
+                const validDirections = new Set(Object.values(DIRECTION))
 
                 if (isNaN(x) || isNaN(y) || !validDirections.has(dir)) {
                     command = () => {}
                     break
                 }
-                command = PlaceCommand(this._robot, null, { x: parseInt(x, 10), y: parseInt(y, 10) }, dir) 
+                command = PlaceCommand(this._robot, { coordinate: { x: parseInt(x, 10), y: parseInt(y, 10) }, direction: dir }) 
                 break 
             case COMMAND_TYPE.MOVE: 
-                command = MoveCommand(this._robot, null)
+                command = MoveCommand(this._robot)
                 break 
             case COMMAND_TYPE.LEFT:
                 command = RotateLeftCommand(this._robot)
