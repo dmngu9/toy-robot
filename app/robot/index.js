@@ -65,6 +65,14 @@ class Robot {
         return response
     }
 
+    get coordinate() {
+        return this._coordinate
+    }
+
+    get direction() {
+        return this._direction
+    }
+
     set position(position) {
         const { coordinate, direction } = position
         this._coordinate = coordinate
