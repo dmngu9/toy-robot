@@ -4,5 +4,12 @@
   "description": "Toy robot move on table top based on user input",
   "main": "index.js",
   "author": "Minh Nguyen",
-  "license": "MIT"
+  "license": "MIT",
+  "scripts": {
+    "start": "node index.js",
+    "test": "jest"
+  },
+  "devDependencies": {
+    "jest": "^26.6.1"
+  }
 }
