@@ -29,10 +29,11 @@ describe('(Game)', () => {
     })
 
     it('robot should not be placed outside table', () => {
-        game.play('PLACE 5,5,NORTH')
+        game.play('PLACE 1,4,NORTH')
+        game.play('PLACE 1,5,EAST')
         const res = game.play('REPORT')
 
-        expect(res).toBe('not placed')
+        expect(res).toBe('1,4,NORTH')
     })
 
     it('should place robot at right location', () => {
