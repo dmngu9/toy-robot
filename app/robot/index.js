@@ -58,7 +58,7 @@ class Robot {
 
     report = () => {
         if (!this.isPlaced()) {
-            return
+            return 'not placed'
         }
         const response = `${this._coordinate.x},${this._coordinate.y},${this._direction}`
         console.log(response)
@@ -75,6 +75,9 @@ class Robot {
 
     set position(position) {
         const { coordinate, direction } = position
+        if (!this.isOnTable(coordinate)) {
+            return
+        }
         this._coordinate = coordinate
         this._direction = direction
     }

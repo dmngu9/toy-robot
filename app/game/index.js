@@ -1,6 +1,12 @@
+const { CommandFactory } = require('../commands')
+const { Robot } = require('../robot')
+const { Table } = require('../table')
+
 class Game {
-    constructor(commandFactory) {
-        this._commandFactory = commandFactory
+    constructor() {
+        const table = new Table(5, 5)
+        const robot = new Robot(table)
+        this._commandFactory = new CommandFactory(robot)
     }
 
     play = (input) => {

@@ -1,7 +1,4 @@
 const readline = require('readline')
-const { CommandFactory } = require('./app/commands')
-const { Robot } = require('./app/robot')
-const { Table } = require('./app/table')
 const { Game } = require('./app/game')
 
 const rl = readline.createInterface({
@@ -10,10 +7,7 @@ const rl = readline.createInterface({
     terminal: false
 });
 
-const table = new Table(5, 5)
-const robot = new Robot(table)
-const commandFactory = new CommandFactory(robot)
-const game = new Game(commandFactory)
+const game = new Game()
 
 rl.on('line', line => {
     game.play(line)

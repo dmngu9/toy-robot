@@ -129,8 +129,8 @@ describe('(Robot)', () => {
     })
 
     describe('(Method) report', () => {
-        it('should not report if robot is not positioned', () => {
-            expect(robot.report()).toBeUndefined()
+        it('should report not placed if robot is not positioned', () => {
+            expect(robot.report()).toBe('not placed')
         })
 
         it('should report', () => {
