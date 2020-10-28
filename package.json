@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Toy robot move on table top based on user input",
   "main": "index.js",
-  "author": "Minh Nguyen",
+  "author": "dmngu9",
   "license": "MIT",
   "engines": {
     "node": ">=12.0"
